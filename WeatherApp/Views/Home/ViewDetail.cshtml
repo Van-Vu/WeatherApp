@@ -1,0 +1,77 @@
+﻿@model WeatherApp.ViewModel.WeatherDetailViewModel
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<input type="button" id="btnback" value="Back"/>
+
+<table class="table-detail">
+    <tr class="tr-border-bottom">
+        <td class="width-70percent">@Html.LabelFor(model => model.StationName)
+        </td>
+        <td>@Html.DisplayFor(model => model.StationName)
+        </td>
+    </tr>
+    <tr class="tr-border-bottom">
+        <td>@Html.LabelFor(model => model.LowestTemperature)
+        </td>
+        <td>@Html.DisplayFor(model => model.LowestTemperature)
+        </td>
+    </tr>
+    <tr class="tr-border-bottom">
+        <td>@Html.LabelFor(model => model.TimeOfLowestTemperature)
+        </td>
+        <td>@Html.DisplayFor(model => model.TimeOfLowestTemperature)
+        </td>
+    </tr>
+    <tr class="tr-border-bottom">
+        <td>@Html.LabelFor(model => model.HighestTemperature)
+        </td>
+        <td>@Html.DisplayFor(model => model.HighestTemperature)
+        </td>
+    </tr>
+    <tr class="tr-border-bottom">
+        <td>@Html.LabelFor(model => model.TimeOfHighestTemperature)
+        </td>
+        <td>@Html.DisplayFor(model => model.TimeOfHighestTemperature)
+        </td>
+    </tr>
+    <tr class="tr-border-bottom">
+        <td>@Html.LabelFor(model => model.MeanTemperature)
+        </td>
+        <td>@Html.DisplayFor(model => model.MeanTemperature)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.History)
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <table class="table-border">
+                <thead>
+                    <tr>
+                        <th>Date and Time</th>
+                        <th>Temperature</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.History)
+                    {
+                    <tr>
+                        <td>@item.DateTime.ToString("MM/dd/yyyy H:mm:ss")</td>
+                        <td>@item.Temperature.ToString("#0.0000")</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+
+@section Scripts {
+    @Styles.Render("~/css")
+    <script type="text/javascript" src="~/Scripts/ViewDetailScript.js"></script>
+}

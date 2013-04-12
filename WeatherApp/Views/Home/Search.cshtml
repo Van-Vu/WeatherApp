@@ -1,0 +1,49 @@
+﻿@model WeatherApp.ViewModel.SearchPanelViewModel
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Ajax.BeginForm("SearchStation", new AjaxOptions
+{
+  HttpMethod = "Post",    
+  OnSuccess = "Loaded",
+  LoadingElementId = "spinner"    
+}))
+{
+@Html.ValidationSummary(true)
+<div style="width: 500px; margin: 0 auto; clear: both">
+    <div>
+        <p style="width: 150px; float: left">@Html.LabelFor(model => model.StationName)</p>
+        <p>@Html.TextBoxFor(model => model.StationName)</p>
+    </div>
+    <div>
+        <p style="width: 150px; float: left">@Html.LabelFor(model => model.FromDate)</p>
+        <p>@Html.TextBoxFor(model => model.FromDate)</p>
+        <p>@Html.ValidationMessageFor(model => model.FromDate)</p>
+    </div>
+    <div>
+        <p style="width: 150px; float: left">@Html.LabelFor(model => model.ToDate)</p>
+        <p>@Html.TextBoxFor(model => model.ToDate)</p>
+        <p>@Html.ValidationMessageFor(model => model.ToDate)</p>
+    </div>
+    <div>
+        <div style="width: 80px;margin: 0 auto"><input type="submit" id="btnSearch" value="Search" /></div>
+    </div>
+</div>
+}
+<div style="width: 100px; margin: 0 auto; clear: both"><img id="spinner" src="~/Images/spinning.gif" style="display: none;margin: 0 auto"></div>
+
+
+<div id="searchresult"></div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Styles.Render("~/css")
+    <link href="../../Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+    <script type="text/javascript" src="~/Scripts/SearchPanelScript.js"></script>
+
+}
