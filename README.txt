@@ -1,4 +1,4 @@
-Viocorp: WeatherApp
+WeatherApp
 ==========
 Given the WeatherData.xml as an input please create an MVC4 web application which would provide 
 the following functionality:
